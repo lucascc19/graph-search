@@ -11,6 +11,7 @@ def main():
     - graphs.py: define os grafos usados
     - bfs.py: resolve o exercicio de BFS
     - dfs.py: resolve o exercicio de DFS
+    - ucs.py: resolve o exercicio de custo uniforme
     - main.py: junta tudo e mostra a resposta final
     """
 
