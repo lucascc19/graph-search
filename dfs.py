@@ -1,30 +1,30 @@
-def dfs_with_cycle(graph, start):
-    visited = set()
-    recursion_stack = set()
-    exploration_order = []
-    cycle = []
+def dfs_com_ciclo(grafo, inicio):
+    visitados = set()
+    pilha_recursao = set()
+    ordem_exploracao = []
+    ciclo = []
 
-    def visit(node, path):
-        nonlocal cycle
+    def visitar(vertice, caminho_atual):
+        nonlocal ciclo
 
-        visited.add(node)
-        recursion_stack.add(node)
-        exploration_order.append(node)
-        path.append(node)
+        visitados.add(vertice)
+        pilha_recursao.add(vertice)
+        ordem_exploracao.append(vertice)
+        caminho_atual.append(vertice)
 
-        for neighbor in graph.get(node, []):
-            if cycle:
+        for vizinho in grafo.get(vertice, []):
+            if ciclo:
                 return
 
-            if neighbor not in visited:
-                visit(neighbor, path)
-            elif neighbor in recursion_stack:
-                cycle_start = path.index(neighbor)
-                cycle = path[cycle_start:] + [neighbor]
+            if vizinho not in visitados:
+                visitar(vizinho, caminho_atual)
+            elif vizinho in pilha_recursao:
+                inicio_ciclo = caminho_atual.index(vizinho)
+                ciclo = caminho_atual[inicio_ciclo:] + [vizinho]
                 return
 
-        recursion_stack.remove(node)
-        path.pop()
+        pilha_recursao.remove(vertice)
+        caminho_atual.pop()
 
-    visit(start, [])
-    return exploration_order, cycle
+    visitar(inicio, [])
+    return ordem_exploracao, ciclo

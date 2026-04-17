@@ -1,33 +1,33 @@
 from collections import deque
 
 
-def bfs_shortest_path(graph, start, goal):
-    queue = deque([start])
-    visited = {start}
-    parent = {start: None}
-    visit_order = []
+def bfs_caminho_minimo(grafo, inicio, destino):
+    fila = deque([inicio])
+    visitados = {inicio}
+    pai = {inicio: None}
+    ordem_visita = []
 
-    while queue:
-        current = queue.popleft()
-        visit_order.append(current)
+    while fila:
+        vertice_atual = fila.popleft()
+        ordem_visita.append(vertice_atual)
 
-        if current == goal:
+        if vertice_atual == destino:
             break
 
-        for neighbor in graph[current]:
-            if neighbor not in visited:
-                visited.add(neighbor)
-                parent[neighbor] = current
-                queue.append(neighbor)
+        for vizinho in grafo[vertice_atual]:
+            if vizinho not in visitados:
+                visitados.add(vizinho)
+                pai[vizinho] = vertice_atual
+                fila.append(vizinho)
 
-    if goal not in parent:
-        return None, visit_order
+    if destino not in pai:
+        return None, ordem_visita
 
-    path = []
-    node = goal
-    while node is not None:
-        path.append(node)
-        node = parent[node]
-    path.reverse()
+    caminho = []
+    vertice = destino
+    while vertice is not None:
+        caminho.append(vertice)
+        vertice = pai[vertice]
+    caminho.reverse()
 
-    return path, visit_order
+    return caminho, ordem_visita
