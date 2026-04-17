@@ -100,6 +100,10 @@ Considere o grafo ponderado com arestas nao direcionadas:
 
 `A-B (2), A-C (5), B-D (4), C-D (1), B-E (7), D-E (1)`
 
+### Representacao visual do Grafo 3
+
+![Grafo 3](./assets/graph_ucs.png)
+
 ### Como a UCS funciona neste exercicio
 
 A UCS expande sempre o vertice com menor custo acumulado a partir da origem, usando uma fila de prioridade. Diferente da BFS, ela leva em conta os pesos das arestas — por isso garante o caminho de menor custo total, nao o de menor numero de arestas.
