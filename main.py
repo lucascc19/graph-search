@@ -1,6 +1,7 @@
 from bfs import bfs_caminho_minimo
 from dfs import dfs_com_ciclo
-from graphs import GRAPH_BFS, GRAPH_DFS
+from ucs import ucs_caminho_minimo
+from graphs import GRAPH_BFS, GRAPH_DFS, GRAPH_UCS
 
 
 def main():
@@ -15,6 +16,7 @@ def main():
 
     path, bfs_order = bfs_caminho_minimo(GRAPH_BFS, "A", "F")
     dfs_order, cycle = dfs_com_ciclo(GRAPH_DFS, "A")
+    ucs_path, ucs_cost, ucs_order = ucs_caminho_minimo(GRAPH_UCS, "A", "E")
 
     print("EXERCICIO 1 - BFS")
     print(f"Caminho com menor numero de arestas de A ate F: {' -> '.join(path)}")
@@ -28,6 +30,11 @@ def main():
     else:
         print("Nao ha ciclo no grafo.")
 
+    print()
+    print("EXERCICIO 3 - UCS")
+    print(f"Caminho de menor custo de A ate E: {' -> '.join(ucs_path)}")
+    print(f"Custo total: {ucs_cost}")
+    print(f"Ordem de expansao: {', '.join(ucs_order)}")
 
 if __name__ == "__main__":
     main()
