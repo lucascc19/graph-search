@@ -1,34 +1,34 @@
-# Exercicios de Grafos com BFS, DFS e UCS
+# Exercícios de Grafos com BFS, DFS e UCS
 
-Este projeto resolve tres exercicios classicos de teoria dos grafos usando Python:
+Este projeto resolve três exercícios clássicos de teoria dos grafos usando Python:
 - busca em largura (BFS)
 - busca em profundidade (DFS)
 - busca de custo uniforme (UCS)
 
-A organizacao dos arquivos ficou assim:
-- `graphs.py`: define os grafos usados nos exercicios
+A organização dos arquivos ficou assim:
+- `graphs.py`: define os grafos usados nos exercícios
 - `bfs.py`: implementa a busca em largura
-- `dfs.py`: implementa a busca em profundidade com deteccao de ciclo
+- `dfs.py`: implementa a busca em profundidade com detecção de ciclo
 - `ucs.py`: implementa a busca de custo uniforme
-- `main.py`: executa os tres exercicios e imprime os resultados
+- `main.py`: executa os três exercícios e imprime os resultados
 
-## Questao 1 - Busca em largura (BFS)
+## Questão 1 - Busca em largura (BFS)
 
 ### Enunciado
 
-Considere o grafo nao ponderado abaixo, com arestas nao direcionadas:
+Considere o grafo não ponderado abaixo, com arestas não direcionadas:
 
 `A-B, A-C, B-D, C-D, C-E, D-F, E-F`
 
-### Representacao visual do Grafo 1
+### Representação visual do Grafo 1
 
 ![Grafo 1](./assets/graph_bfs.png)
 
-### Como a BFS funciona neste exercicio
+### Como a BFS funciona neste exercício
 
-A BFS visita os vertices por niveis. Isso significa que ela explora primeiro todos os vertices a 1 aresta de distancia do ponto inicial, depois os vertices a 2 arestas, e assim por diante.
+A BFS visita os vértices por níveis. Isso significa que ela explora primeiro todos os vértices a 1 aresta de distância do ponto inicial, depois os vértices a 2 arestas, e assim por diante.
 
-Comecando em `A`:
+Começando em `A`:
 
 1. Visitamos `A`
 2. Descobrimos seus vizinhos: `B` e `C`
@@ -36,21 +36,21 @@ Comecando em `A`:
 4. Depois exploramos `C`, descobrindo `E`
 5. Depois exploramos `D`, descobrindo `F`
 
-Como a BFS encontra o destino `F` pelo menor numero de arestas, o caminho minimo encontrado foi:
+Como a BFS encontra o destino `F` pelo menor número de arestas, o caminho mínimo encontrado foi:
 
 `A -> B -> D -> F`
 
-### Resposta da questao 1
+### Resposta da questão 1
 
-#### (a) Caminho com menor numero de arestas de A ate F
+#### (a) Caminho com menor número de arestas de A até F
 
 `A -> B -> D -> F`
 
-#### (b) Ordem de visita dos vertices
+#### (b) Ordem de visita dos vértices
 
 `A, B, C, D, E, F`
 
-## Questao 2 - Busca em profundidade (DFS)
+## Questão 2 - Busca em profundidade (DFS)
 
 ### Enunciado
 
@@ -58,15 +58,15 @@ Considere o grafo direcionado com arestas:
 
 `A -> B, B -> C, C -> D, D -> B, C -> E`
 
-### Representacao visual do Grafo 2
+### Representação visual do Grafo 2
 
 ![Grafo 2](./assets/graph_dfs.png)
 
-### Como a DFS funciona neste exercicio
+### Como a DFS funciona neste exercício
 
-A DFS tenta seguir o mais fundo possivel em cada caminho antes de voltar.
+A DFS tenta seguir o mais fundo possível em cada caminho antes de voltar.
 
-Comecando em `A`:
+Começando em `A`:
 
 1. Visitamos `A`
 2. Seguimos para `B`
@@ -74,55 +74,55 @@ Comecando em `A`:
 4. De `C`, seguimos para `D`
 5. Em `D`, existe uma aresta voltando para `B`
 
-Como `B` ainda faz parte do caminho ativo da recursao, isso indica a existencia de um ciclo.
+Como `B` ainda faz parte do caminho ativo da recursão, isso indica a existência de um ciclo.
 
-O ciclo encontrado e:
+O ciclo encontrado é:
 
 `B -> C -> D -> B`
 
-### Resposta da questao 2
+### Resposta da questão 2
 
-#### (a) Ordem de exploracao a partir de A
+#### (a) Ordem de exploração a partir de A
 
 `A, B, C, D`
 
-#### (b) Ha ciclo no grafo?
+#### (b) Há ciclo no grafo?
 
-Sim. O ciclo e:
+Sim. O ciclo é:
 
 `B -> C -> D -> B`
 
-## Questao 3 - Busca de custo uniforme (UCS)
+## Questão 3 - Busca de custo uniforme (UCS)
 
 ### Enunciado
 
-Considere o grafo ponderado com arestas nao direcionadas:
+Considere o grafo ponderado com arestas não direcionadas:
 
 `A-B (2), A-C (5), B-D (4), C-D (1), B-E (7), D-E (1)`
 
-### Representacao visual do Grafo 3
+### Representação visual do Grafo 3
 
 ![Grafo 3](./assets/graph_ucs.png)
 
-### Como a UCS funciona neste exercicio
+### Como a UCS funciona neste exercício
 
-A UCS expande sempre o vertice com menor custo acumulado a partir da origem, usando uma fila de prioridade. Diferente da BFS, ela leva em conta os pesos das arestas — por isso garante o caminho de menor custo total, nao o de menor numero de arestas.
+A UCS expande sempre o vértice com menor custo acumulado a partir da origem, usando uma fila de prioridade. Diferente da BFS, ela leva em conta os pesos das arestas — por isso garante o caminho de menor custo total, não o de menor número de arestas.
 
-Comecando em `A`:
+Começando em `A`:
 
 1. Expandimos `A` (custo 0). Inserimos na fila: `B(2)`, `C(5)`
 2. Expandimos `B` (custo 2, o menor). Inserimos: `D(6)`, `E(9)`
-3. Expandimos `C` (custo 5). Geraria `D` com custo 6, igual ao ja existente — sem alteracao
+3. Expandimos `C` (custo 5). Geraria `D` com custo 6, igual ao já existente — sem alteração
 4. Expandimos `D` (custo 6). Descobrimos `E` com custo 7, menor que o `E(9)` atual — **atualizamos**
-5. Expandimos `E` (custo 7) — destino alcancado
+5. Expandimos `E` (custo 7) — destino alcançado
 
 O caminho de menor custo encontrado foi:
 
 `A -> B -> D -> E` com custo total `7`
 
-### Resposta da questao 3
+### Resposta da questão 3
 
-#### Caminho de menor custo de A ate E
+#### Caminho de menor custo de A até E
 
 `A -> B -> D -> E`
 
@@ -130,19 +130,19 @@ O caminho de menor custo encontrado foi:
 
 `7`
 
-#### Ordem de expansao dos vertices
+#### Ordem de expansão dos vértices
 
 `A, B, C, D, E`
 
-## Relacao com o codigo
+## Relação com o código
 
-Os grafos usados no codigo estao definidos em `graphs.py`.
+Os grafos usados no código estão definidos em `graphs.py`.
 
 - `GRAPH_BFS` representa o Grafo 1
 - `GRAPH_DFS` representa o Grafo 2
 - `GRAPH_UCS` representa o Grafo 3, com estrutura `{vertice: [(vizinho, peso), ...]}` para suportar os pesos das arestas
 
-A implementacao da BFS esta em `bfs.py`, a implementacao da DFS com deteccao de ciclo esta em `dfs.py`, e a implementacao da UCS com fila de prioridade esta em `ucs.py`.
+A implementação da BFS está em `bfs.py`, a implementação da DFS com detecção de ciclo está em `dfs.py`, e a implementação da UCS com fila de prioridade está em `ucs.py`.
 
 ## Como executar
 
@@ -152,4 +152,4 @@ Para executar tudo de uma vez:
 python main.py
 ```
 
-Se o comando `python` nao estiver configurado no ambiente, pode ser necessario instalar o Python ou ajustar o PATH.
+Se o comando `python` não estiver configurado no ambiente, pode ser necessário instalar o Python ou ajustar o PATH.
